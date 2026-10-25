@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { useReducedMotionState } from '../lib/motion'
 import Img from './Img'
+import { Link } from 'react-router-dom'
 import ScrollReveal from './rb/ScrollReveal'
 import CountUp from './rb/CountUp'
 
@@ -68,6 +69,14 @@ export default function Story() {
             Every project starts the same way: a quiet walk on your property, a conversation about how you live, and a
             sketch on paper. From there we draw, we build, and we plant, always with a deep respect for native Texas
             landscapes.
+          </p>
+          <p className="story__more">
+            <Link className="link link--dark" to="/about">
+              Read our full story
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
           </p>
           <p className="story__sign">
             <span>Abéy Bruce</span>

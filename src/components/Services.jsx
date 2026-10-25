@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Img from './Img'
 import { SERVICES } from '../data'
-import { scrollToTarget } from '../lib/smooth'
+import { Link } from 'react-router-dom'
 import { useReducedMotionState } from '../lib/motion'
 
 export default function Services() {
@@ -100,12 +100,12 @@ export default function Services() {
                         <li key={p}>{p}</li>
                       ))}
                     </ul>
-                    <a className="link" href="#contact" onClick={(e) => (e.preventDefault(), scrollToTarget('#contact', -20))}>
-                      Ask about {s.title.toLowerCase()}
+                    <Link className="link" to={`/${s.slug}`}>
+                      Explore {s.title.toLowerCase()}
                       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
                         <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </article>
               </li>

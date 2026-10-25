@@ -5,6 +5,7 @@ import { useReducedMotionState } from '../lib/motion'
 import Img from './Img'
 import { GALLERY, img } from '../data'
 import { getLenis } from '../lib/smooth'
+import { Link } from 'react-router-dom'
 
 export default function Gallery() {
   const root = useRef(null)
@@ -102,6 +103,12 @@ export default function Gallery() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="container work__more">
+        <Link className="btn btn--dark" to="/project-gallery">
+          View the full portfolio
+        </Link>
       </div>
 
       <dialog

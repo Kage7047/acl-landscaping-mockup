@@ -36,6 +36,7 @@ export const SITE = {
   phoneHref: 'tel:+15125525677',
   email: 'aclscaping@gmail.com',
   address: '11506 Easy St., Austin, TX 78748',
+  award: 'https://www.newhomesource.com/learn/best-landscaping-companies-in-austin/',
   facebook: 'https://www.facebook.com/austincreativelandscaping',
   instagram: 'https://www.instagram.com/austincreativelandscaping',
 }
@@ -43,6 +44,7 @@ export const SITE = {
 export const SERVICES = [
   {
     id: 'design',
+    slug: 'landscape-design',
     title: 'Landscape Design',
     kicker: 'Imagine. Design. Build.',
     text: 'It all starts with a great design built around your land, your life, and your budget.',
@@ -51,6 +53,7 @@ export const SERVICES = [
   },
   {
     id: 'hardscape',
+    slug: 'hardscaping',
     title: 'Hardscaping',
     kicker: 'Patios, pergolas & walls',
     text: 'Patios, pergolas, walkways, retaining walls and outdoor kitchens built from honest materials that age beautifully in the Texas climate.',
@@ -59,6 +62,7 @@ export const SERVICES = [
   },
   {
     id: 'turf',
+    slug: 'artificial-turf',
     title: 'Artificial Turf',
     kicker: 'Green all year',
     text: 'Low-maintenance, pet-friendly turf that stays green year-round. No mowing, no irrigation, no brown patches through a Texas drought.',
@@ -67,6 +71,7 @@ export const SERVICES = [
   },
   {
     id: 'steel',
+    slug: 'all-things-gabion',
     title: 'Steel & Gabions',
     kicker: 'Cor-Ten craftsmanship',
     text: 'Handcrafted Cor-Ten steel fencing, trellises and gabion walls: bold, sculptural structures that define space and add lasting character.',
@@ -75,6 +80,7 @@ export const SERVICES = [
   },
   {
     id: 'planters',
+    slug: 'planters',
     title: 'Custom Planters',
     kicker: 'Built to fit',
     text: 'Custom planter boxes in steel, stone and timber, made to suit your space and planted with natives that thrive in Central Texas.',
@@ -83,6 +89,7 @@ export const SERVICES = [
   },
   {
     id: 'lighting',
+    slug: 'landscape-lighting',
     title: 'Lighting & Water',
     kicker: 'After-dark atmosphere',
     text: 'Landscape lighting and water features that carry your yard into the evening, with drainage solutions that keep it healthy all year.',

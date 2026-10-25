@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react'
 import Img from './Img'
 import SplitText from './rb/SplitText'
 import Magnet from './rb/Magnet'
+import { Link } from 'react-router-dom'
 import { scrollToTarget } from '../lib/smooth'
 import { useReducedMotionState } from '../lib/motion'
 
@@ -83,12 +84,12 @@ export default function Hero({ ready }) {
         </p>
         <div className="hero__actions hero__fade">
           <Magnet padding={70} magnetStrength={4}>
-            <a className="btn btn--primary" href="#contact" onClick={(e) => (e.preventDefault(), scrollToTarget('#contact', -20))}>
+            <Link className="btn btn--primary" to="/contact">
               Book a free consultation
               <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </Link>
           </Magnet>
           <a className="btn btn--ghost" href="#work" onClick={(e) => (e.preventDefault(), scrollToTarget('#work', -20))}>
             See our work
