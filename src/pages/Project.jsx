@@ -24,6 +24,7 @@ export default function Project() {
   const rest = p.imgs.filter((i) => !/before|after/.test(i.s))
   const hasPair = befores.length && afters.length
   const gallery = p.imgs
+  const more = gallery.slice(5)
   const items = gallery.map((i) => picItem(i.s, i.alt, i.alt || p.title))
   const prev = projects[(idx - 1 + projects.length) % projects.length]
   const next = projects[(idx + 1) % projects.length]
@@ -43,6 +44,38 @@ export default function Project() {
           </Link>
         }
       />
+
+      <section className="sec sec--paper sec--tight" aria-label="Project photos">
+        <div className="container">
+          <div className={`mosaic mosaic--${Math.min(gallery.length, 5)}`}>
+            {gallery.slice(0, 5).map((g, i) => (
+              <button
+                key={g.s}
+                type="button"
+                className="mosaic__tile"
+                onClick={(e) => {
+                  opener.current = e.currentTarget
+                  setOpen(i)
+                }}
+                aria-label={`Enlarge photo ${i + 1} of ${gallery.length}${g.alt ? `: ${g.alt}` : ''}`}
+              >
+                <Pic s={g.s} alt="" eager={i === 0} sizes={i === 0 ? '(min-width: 960px) 50vw, 100vw' : '(min-width: 960px) 25vw, 50vw'} />
+              </button>
+            ))}
+            <button
+              type="button"
+              className="mosaic__all"
+              onClick={(e) => {
+                opener.current = e.currentTarget
+                setOpen(0)
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
+              Show all {gallery.length} photos
+            </button>
+          </div>
+        </div>
+      </section>
 
       <section className="sec sec--paper">
         <div className="container pj">
@@ -91,16 +124,17 @@ export default function Project() {
         </div>
       </section>
 
+      {more.length > 0 && (
       <section className="sec sec--cream" aria-labelledby="pj-gal">
         <div className="container">
           <header className="sec__head" data-reveal>
             <h2 id="pj-gal" className="sec__title">
-              Full gallery
+              More photos
             </h2>
-            <p className="sec__count">{gallery.length} photos</p>
+            <p className="sec__count">{more.length} more</p>
           </header>
           <div className="masonry">
-            {gallery.map((g, i) => (
+            {more.map((g, j) => { const i = j + 5; return (
               <button
                 key={g.s}
                 type="button"
@@ -114,10 +148,11 @@ export default function Project() {
               >
                 <Pic s={g.s} alt="" sizes="(min-width: 960px) 30vw, 50vw" />
               </button>
-            ))}
+            )})}
           </div>
         </div>
       </section>
+      )}
 
       <section className="sec sec--paper" aria-label="More projects">
         <div className="container pnav">
