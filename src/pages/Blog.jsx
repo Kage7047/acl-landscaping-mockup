@@ -21,7 +21,7 @@ export default function Blog() {
         eyebrow="Austin landscape advice"
         title="Our blog."
         lead={['Whether you’re looking for advice on landscape design, plant selection, or maintenance tips, our blog covers a wide range of topics to inspire your next outdoor project.']}
-        image="new-img-3013"
+        image="plant-gardens-and-irrigation-cover-picture-for-website"
         crumbs={[['Home', '/'], ['Blog']]}
       />
       <section className="sec sec--paper" aria-labelledby="blog-all">

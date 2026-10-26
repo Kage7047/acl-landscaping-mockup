@@ -64,6 +64,23 @@ function Comp({ c, open }) {
         ))}
       </div>
     )
+  if (c.k === 'strip')
+    return (
+      <div className="strip" data-reveal aria-label={c.label || 'Photos'}>
+        <div className="strip__track">
+          {[0, 1].map((k) => (
+            <ul className="strip__set" key={k} aria-hidden={k === 1 ? 'true' : undefined}>
+              {c.imgs.map((im) => (
+                <li key={im.s}>
+                  <Pic s={im.s} alt={k === 0 ? im.alt || '' : ''} sizes="(min-width: 960px) 30vw, 70vw" />
+                  {im.cap && <span>{im.cap}</span>}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
+    )
   if (c.k === 'figs') {
     const items = c.items.map((f) => picItem(f.s, f.alt, f.cap))
     return (
@@ -124,7 +141,7 @@ function Comp({ c, open }) {
   return null
 }
 
-export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, metaDesc, extra }) {
+export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, metaDesc, extra, violet = [] }) {
   const svc = SERVICE_PAGES.find((s) => s.slug === slug)
   const root = useReveal([slug])
   const [lb, setLb] = useState({ items: [], index: null })
@@ -191,7 +208,7 @@ export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, me
       )}
       {svc && <ProjectMatch service={svc.service} serviceLabel={svc.label} />}
       {secs.map((s, i) => (
-        <section key={s.title} className={`sec ${i % 2 ? 'sec--cream' : 'sec--paper'} ${i % 3 === 1 ? 'sec--split' : ''}`} aria-labelledby={`h-${slug}-${i}`}>
+        <section key={s.title} className={`sec ${violet.includes(s.title) ? 'sec--violet' : i % 2 ? 'sec--cream' : 'sec--paper'} ${i % 3 === 1 ? 'sec--split' : ''}`} aria-labelledby={`h-${slug}-${i}`}>
           <div className="container">
             <header className="sec__head" data-reveal>
               <span className="sec__no" aria-hidden="true">

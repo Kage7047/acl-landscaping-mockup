@@ -6,8 +6,8 @@ import { getLenis } from '../lib/smooth'
 import Magnet from './rb/Magnet'
 
 const LINKS = [
-  ['Gallery', '/project-gallery'],
   ['About', '/about'],
+  ['Gallery', '/project-gallery'],
   ['Blog', '/blog'],
   ['Contact', '/contact'],
 ]

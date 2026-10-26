@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import SplitText from './rb/SplitText'
 import ConsultForm from './ConsultForm'
+import SpotlightCard from './rb/SpotlightCard'
 import { useReducedMotionState } from '../lib/motion'
 import { AREAS, SITE } from '../data'
 
@@ -63,9 +64,18 @@ export default function Contact() {
             <p className="areas__note">Based in South Austin, serving northern Hays County and southern Travis County.</p>
           </div>
         </div>
-        <div className="contact__card">
+        <SpotlightCard
+          theme="light"
+          spotlightColor="#9262ca"
+          intensity={0.45}
+          spotlightSize={420}
+          softness={0.85}
+          borderGlow={0.9}
+          className="contact__card"
+          style={{ '--spotlight-card-surface': '#faf6ef' }}
+        >
           <ConsultForm compact kind="consult-home" />
-        </div>
+        </SpotlightCard>
       </div>
     </section>
   )

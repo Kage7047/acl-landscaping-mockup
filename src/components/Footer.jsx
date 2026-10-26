@@ -5,8 +5,8 @@ import { setMotion, useReducedMotionState } from '../lib/motion'
 
 const QUICK = [
   ['Home', '/'],
-  ['Gallery', '/project-gallery'],
   ['About us', '/about'],
+  ['Gallery', '/project-gallery'],
   ['Blog', '/blog'],
   ['Contact', '/contact'],
   ['Join our team', '/join-the-team'],

@@ -10,6 +10,7 @@ import { SITE } from '../data'
  * form service or CRM.)
  */
 export default function ConsultForm({ kind = 'consult', title = 'Request your free consultation', compact = false }) {
+  const isConsult = kind.startsWith('consult') // 'consult' or 'consult-home'; anything else is the job application
   const [params] = useSearchParams()
   const nav = useNavigate()
   const [errors, setErrors] = useState({})
@@ -43,7 +44,7 @@ export default function ConsultForm({ kind = 'consult', title = 'Request your fr
       '',
       v.message || '',
     ].filter((l) => l !== false && l !== undefined)
-    const subject = kind === 'consult' ? `Free consultation request${v.project ? `: ${v.project}` : ''}` : 'Job application'
+    const subject = isConsult ? `Free consultation request${v.project ? `: ${v.project}` : ''}` : 'Job application'
     const href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
     setTimeout(() => {
       window.location.href = href
@@ -78,7 +79,7 @@ export default function ConsultForm({ kind = 'consult', title = 'Request your fr
           {errors.email}
         </p>
       )}
-      {kind === 'consult' ? (
+      {isConsult ? (
         <>
           <div className="field-row">
             <div className="field">
@@ -124,13 +125,13 @@ export default function ConsultForm({ kind = 'consult', title = 'Request your fr
       )}
       <div className="field">
         <label htmlFor={`f-msg-${kind}`}>
-          {kind === 'consult' ? 'Tell us about your space' : 'Tell us about your experience'} <span className="opt">(optional)</span>
+          {isConsult ? 'Tell us about your space' : 'Tell us about your experience'} <span className="opt">(optional)</span>
         </label>
         <textarea id={`f-msg-${kind}`} name="message" rows={compact ? 3 : 4} />
       </div>
       <Magnet padding={50} magnetStrength={5} wrapperClassName="form__submit">
         <button className="btn btn--primary btn--block" type="submit" disabled={busy}>
-          {busy ? 'Opening your email app…' : kind === 'consult' ? 'Request my free consultation' : 'Send my application'}
+          {busy ? 'Opening your email app…' : isConsult ? 'Request my free consultation' : 'Send my application'}
         </button>
       </Magnet>
       <p className="form__note">
