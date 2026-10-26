@@ -3,7 +3,6 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import SplitText from './rb/SplitText'
 import ConsultForm from './ConsultForm'
-import SpotlightCard from './rb/SpotlightCard'
 import { useReducedMotionState } from '../lib/motion'
 import { AREAS, SITE } from '../data'
 
@@ -18,8 +17,18 @@ export default function Contact() {
     },
     { scope: root, dependencies: [reduced], revertOnUpdate: true },
   )
+  // soft light that follows the cursor over the section background
+  const glow = (e) => {
+    const el = root.current
+    if (!el || e.pointerType === 'touch') return
+    const r = el.getBoundingClientRect()
+    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
+    el.style.setProperty('--my', `${e.clientY - r.top}px`)
+    el.classList.add('is-lit')
+  }
+  const unglow = () => root.current?.classList.remove('is-lit')
   return (
-    <section className="contact" id="contact" ref={root} aria-labelledby="contact-title">
+    <section className="contact" id="contact" ref={root} aria-labelledby="contact-title" onPointerMove={glow} onPointerLeave={unglow}>
       <div className="container contact__grid">
         <div className="contact__intro">
           <p className="eyebrow">
@@ -64,18 +73,9 @@ export default function Contact() {
             <p className="areas__note">Based in South Austin, serving northern Hays County and southern Travis County.</p>
           </div>
         </div>
-        <SpotlightCard
-          theme="light"
-          spotlightColor="#9262ca"
-          intensity={0.45}
-          spotlightSize={420}
-          softness={0.85}
-          borderGlow={0.9}
-          className="contact__card"
-          style={{ '--spotlight-card-surface': '#faf6ef' }}
-        >
+        <div className="contact__card">
           <ConsultForm compact kind="consult-home" />
-        </SpotlightCard>
+        </div>
       </div>
     </section>
   )

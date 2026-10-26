@@ -7,13 +7,20 @@ import posts from '../content/blog.json'
 
 const STRIP = [
   ['jackson-015', 'The 3D design, before any ground is broken'],
-  ['bomely-residence', 'Turf, a putting green and Cor-Ten steel'],
-  ['planters-selsky-wooden-bench-1', 'Limestone planters, built-in bench, fire pit'],
-  ['hardscaping-limestone-outdoor-kitchen', 'Outdoor kitchen in Hill Country limestone'],
-  ['gabion-visual-barrier-3', 'Perforated Cor-Ten screen wall'],
+  ['hardscapes-patios-ave-h-outdoor-living', 'Pergola, seating and fire pit for the whole family'],
+  ['artificial-turf-and-lighting-leander-patio-night', 'The same patio after dark, with landscape lighting'],
+  ['hardscaping-pool-scaping', 'Pool, turf and a clean edge to match'],
+  ['ig-fountain-detail', 'The finer details: a limestone fountain'],
+  ['new-home-page2', 'Gabion and Cor-Ten planter with native plants'],
+  ['hardscapes-patios-cover-picture-for-website', 'Limestone terraces beside the pool'],
+  ['hardscapes-patios-limestone-outdoor-kitchen', 'Outdoor kitchen in Hill Country limestone'],
   ['hardscaping-custom-deck', 'Custom deck with a built-in fire pit'],
-  ['plant-gardens-and-irrigation-cover-picture-for-website', 'Native plantings with steel edging'],
+  ['planter-boxes-and-gabion-cover-picture-for-website', 'Steel, timber and gabion planters'],
+  ['hardscaping-dan-dankert-backyard', 'A shaded backyard with a covered pergola'],
   ['hardscapes-patios-paver-patio-with-steel-planter-and-bench', 'Paver patio with a steel planter and bench'],
+  ['artificial-turf-and-lighting-cover-for-website', 'Artificial turf that stays green all year'],
+  ['planters-steel-with-trellises', 'Steel planters and trellis beside the pool'],
+  ['bomely-residence', 'Turf, a putting green and Cor-Ten steel'],
 ].map(([s, cap]) => ({ s, alt: cap, cap }))
 // a photo for each core value, chosen to match the idea
 const VALUE_PHOTO = {
@@ -37,7 +44,7 @@ const aboutData = {
 }
 
 export function About() {
-  return <ContentPage slug="about" data={aboutData} eyebrow="Since 2008" heroImage="planters-selsky-wooden-bench-1" crumbs={[['Home', '/'], ['About']]} violet={['About the Team']} />
+  return <ContentPage slug="about" data={aboutData} eyebrow="Since 2008" heroImage="hardscapes-patios-cover-picture-for-website" crumbs={[['Home', '/'], ['About']]} violet={['About the Team']} />
 }
 export function ServicePage({ slug }) {
   const svc = SERVICE_PAGES.find((s) => s.slug === slug)

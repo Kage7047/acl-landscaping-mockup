@@ -5,6 +5,7 @@ import CtaBand from '../components/CtaBand'
 import ProjectMatch from '../components/ProjectMatch'
 import Lightbox from '../components/Lightbox'
 import Mosaic from '../components/Mosaic'
+import Strip from '../components/Strip'
 import { PostRow } from '../components/Cards'
 import { Pic, picItem } from '../lib/pic'
 import { useReveal } from '../components/useReveal'
@@ -64,23 +65,7 @@ function Comp({ c, open }) {
         ))}
       </div>
     )
-  if (c.k === 'strip')
-    return (
-      <div className="strip" data-reveal aria-label={c.label || 'Photos'}>
-        <div className="strip__track">
-          {[0, 1].map((k) => (
-            <ul className="strip__set" key={k} aria-hidden={k === 1 ? 'true' : undefined}>
-              {c.imgs.map((im) => (
-                <li key={im.s}>
-                  <Pic s={im.s} alt={k === 0 ? im.alt || '' : ''} sizes="(min-width: 960px) 30vw, 70vw" />
-                  {im.cap && <span>{im.cap}</span>}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
-    )
+  if (c.k === 'strip') return <Strip imgs={c.imgs} label={c.label || 'Photos'} />
   if (c.k === 'figs') {
     const items = c.items.map((f) => picItem(f.s, f.alt, f.cap))
     return (
