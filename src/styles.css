@@ -214,9 +214,12 @@ main:focus {
   padding: 16px 28px;
   border-radius: 999px;
   border: 1.5px solid transparent;
+  background: transparent; /* <button class="btn"> otherwise keeps the browser's white fill */
+  font: inherit;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1;
+  cursor: pointer;
   text-decoration: none;
   transition:
     background 0.3s var(--ease),
