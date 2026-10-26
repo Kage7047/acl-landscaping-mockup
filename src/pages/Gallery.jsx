@@ -27,7 +27,7 @@ export default function Gallery() {
         eyebrow="Client case studies"
         title="Project gallery."
         lead={['Real projects. Real yards. Browse our featured client case studies and explore the full portfolio by category.']}
-        image="new-img-3900"
+        image="before-and-after-dankert-residence-after-2"
         crumbs={[['Home', '/'], ['Gallery']]}
       />
       <section className="sec sec--paper" aria-labelledby="gal-title">

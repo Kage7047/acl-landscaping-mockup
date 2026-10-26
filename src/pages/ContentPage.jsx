@@ -5,7 +5,7 @@ import CtaBand from '../components/CtaBand'
 import ProjectMatch from '../components/ProjectMatch'
 import Lightbox from '../components/Lightbox'
 import Mosaic from '../components/Mosaic'
-import { PostCard } from '../components/Cards'
+import { PostRow } from '../components/Cards'
 import { Pic, picItem } from '../lib/pic'
 import { useReveal } from '../components/useReveal'
 import { useMeta } from '../lib/useMeta'
@@ -191,7 +191,7 @@ export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, me
       )}
       {svc && <ProjectMatch service={svc.service} serviceLabel={svc.label} />}
       {secs.map((s, i) => (
-        <section key={s.title} className={`sec ${i % 2 ? 'sec--cream' : 'sec--paper'}`} aria-labelledby={`h-${slug}-${i}`}>
+        <section key={s.title} className={`sec ${i % 2 ? 'sec--cream' : 'sec--paper'} ${i % 3 === 1 ? 'sec--split' : ''}`} aria-labelledby={`h-${slug}-${i}`}>
           <div className="container">
             <header className="sec__head" data-reveal>
               <span className="sec__no" aria-hidden="true">
@@ -223,9 +223,9 @@ export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, me
                 All articles
               </Link>
             </header>
-            <div className="pgrid">
+            <div className="plist">
               {related.map((p) => (
-                <PostCard key={p.slug} post={p} />
+                <PostRow key={p.slug} post={p} />
               ))}
             </div>
           </div>

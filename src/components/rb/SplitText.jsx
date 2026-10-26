@@ -412,7 +412,7 @@ const SplitText = ({
       className={`split-parent ${className}`}
       style={{
         textAlign,
-        overflow: clip ? 'hidden' : 'visible',
+        overflow: clip && !mask ? 'hidden' : 'visible',
         display: 'inline-block',
         whiteSpace: 'normal',
         wordWrap: 'break-word',

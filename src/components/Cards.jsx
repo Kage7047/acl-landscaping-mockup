@@ -1,29 +1,43 @@
 import { Link } from 'react-router-dom'
 import { Pic } from '../lib/pic'
 
-export function PostCard({ post, featured = false }) {
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+function splitDate(s) {
+  const d = new Date(s)
+  if (Number.isNaN(+d)) return { day: '', mon: s, year: '' }
+  return { day: String(d.getDate()), mon: MONTHS[d.getMonth()], year: String(d.getFullYear()), iso: d.toISOString().slice(0, 10) }
+}
+
+/** Horizontal list row: big date, big title, excerpt, small thumbnail. */
+export function PostRow({ post, lead = false }) {
+  const d = splitDate(post.date)
+  const url = `/blog/${post.slug}`
   return (
-    <article className={`pcard ${featured ? 'pcard--feat' : ''}`} data-reveal>
-      <Link to={`/blog/${post.slug}`} className="pcard__media" aria-hidden="true" tabIndex={-1}>
-        {post.img && <Pic s={post.img} alt="" sizes={featured ? '(min-width: 960px) 55vw, 100vw' : '(min-width: 960px) 30vw, 100vw'} />}
-      </Link>
-      <div className="pcard__body">
-        <p className="pcard__meta">
+    <article className={`prow ${lead ? 'prow--lead' : ''}`} data-reveal>
+      <time className="prow__date" dateTime={d.iso}>
+        <span className="prow__day">{d.day}</span>
+        <span className="prow__mon">
+          {d.mon} {d.year}
+        </span>
+      </time>
+      <div className="prow__body">
+        <p className="prow__meta">
           <span>{post.cat}</span>
-          <span>{post.date}</span>
           <span>{post.mins} min read</span>
         </p>
-        <h3 className="pcard__title">
-          <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+        <h3 className="prow__title">
+          <Link to={url}>{post.title}</Link>
         </h3>
-        <p className="pcard__ex">{post.excerpt}</p>
-        <Link className="link link--dark" to={`/blog/${post.slug}`} aria-label={`Read: ${post.title}`}>
-          Read article
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <p className="prow__ex">{post.excerpt}</p>
+      </div>
+      <Link to={url} className="prow__media" aria-hidden="true" tabIndex={-1}>
+        {post.img && <Pic s={post.img} alt="" sizes={lead ? '(min-width: 960px) 28vw, 40vw' : '(min-width: 960px) 16vw, 30vw'} />}
+        <span className="prow__go">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </Link>
-      </div>
+        </span>
+      </Link>
     </article>
   )
 }

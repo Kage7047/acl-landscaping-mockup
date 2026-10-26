@@ -3,6 +3,7 @@ const BASE = import.meta.env.BASE_URL
 // name -> [full width, sm width, aspect ratio w/h as [w,h] of the full file]
 const FILES = {
   hero: [1800, 900, 1800, 1350],
+  hero2: [1500, 640, 1500, 1125],
   bomely: [1800, 900, 1800, 1350],
   dusk: [1800, 900, 1800, 1350],
   design: [1693, 900, 1693, 2272],

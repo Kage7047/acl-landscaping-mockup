@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import PageHero from '../components/PageHero'
 import CtaBand from '../components/CtaBand'
-import { PostCard } from '../components/Cards'
+import { PostRow } from '../components/Cards'
 import { useReveal } from '../components/useReveal'
 import { useMeta } from '../lib/useMeta'
 import posts from '../content/blog.json'
@@ -41,10 +41,10 @@ export default function Blog() {
               </button>
             ))}
           </div>
-          {first && <PostCard post={first} featured />}
-          <div className="pgrid">
+          <div className="plist">
+            {first && <PostRow post={first} lead />}
             {rest.map((p) => (
-              <PostCard key={p.slug} post={p} />
+              <PostRow key={p.slug} post={p} />
             ))}
           </div>
         </div>

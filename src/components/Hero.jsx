@@ -51,7 +51,7 @@ export default function Hero({ ready }) {
   return (
     <section className="hero" id="top" ref={root} aria-labelledby="hero-title">
       <div className="hero__media">
-        <Img name="hero" className="hero__img" eager alt="A gabion and Cor-Ten steel planter filled with native plants in front of a brick home in Austin" sizes="100vw" />
+        <Img name="hero2" className="hero__img" eager alt="A backyard pool beside an artificial turf lawn and play area, finished by Austin Creative Landscaping" sizes="100vw" />
         <div className="hero__shade" />
       </div>
 

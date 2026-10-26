@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import CtaBand from '../components/CtaBand'
-import { PostCard } from '../components/Cards'
+import { PostRow } from '../components/Cards'
 import { Pic } from '../lib/pic'
 import { useReveal } from '../components/useReveal'
 import { useMeta } from '../lib/useMeta'
@@ -111,9 +111,9 @@ export default function Post() {
               All articles
             </Link>
           </header>
-          <div className="pgrid">
+          <div className="plist">
             {related.map((p) => (
-              <PostCard key={p.slug} post={p} />
+              <PostRow key={p.slug} post={p} />
             ))}
           </div>
         </div>

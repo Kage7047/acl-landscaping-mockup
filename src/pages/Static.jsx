@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import ContentPage from './ContentPage'
-import { PostCard } from '../components/Cards'
+import { PostRow } from '../components/Cards'
 import { SERVICE_PAGES } from '../lib/nav'
 import pages from '../content/pages.json'
 import posts from '../content/blog.json'
@@ -34,9 +34,9 @@ export function Author({ who }) {
                   Browse the blog
                 </Link>
               </header>
-              <div className="pgrid">
+              <div className="plist">
                 {mine.slice(0, 6).map((p) => (
-                  <PostCard key={p.slug} post={p} />
+                  <PostRow key={p.slug} post={p} />
                 ))}
               </div>
             </div>
