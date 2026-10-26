@@ -2210,8 +2210,15 @@ html[data-motion='off'] .mq__track { animation-play-state: paused; }
 /* ───────────── Home contact: cursor glow lives in the section background ───────────── */
 .contact { position: relative; isolation: isolate; overflow: clip; }
 /* a soft lime orb that trails the cursor; blurred (not a hard-stop gradient) so it never shows banding or an edge */
-.contact::before { content: ''; position: absolute; z-index: -1; left: var(--mx, 50%); top: var(--my, 50%); width: 760px; height: 760px; margin: -380px 0 0 -380px; border-radius: 50%; pointer-events: none; opacity: 0; background: radial-gradient(circle, rgba(199, 217, 139, 0.34) 0%, rgba(199, 217, 139, 0.18) 40%, rgba(199, 217, 139, 0) 72%); filter: blur(46px); transition: opacity 0.6s var(--ease), left 0.35s ease-out, top 0.35s ease-out; }
+.contact::before { content: ''; position: absolute; z-index: -1; left: 0; top: 0; width: 700px; height: 700px; margin: -350px 0 0 -350px; border-radius: 50%; pointer-events: none; opacity: 0; background: radial-gradient(circle, rgba(199, 217, 139, 0.34) 0%, rgba(199, 217, 139, 0.18) 40%, rgba(199, 217, 139, 0) 72%); filter: blur(40px); transform: translate3d(var(--gx, 50%), var(--gy, 50%), 0); will-change: transform, opacity; transition: opacity 0.5s var(--ease), transform 0.25s ease-out; }
 .contact.is-lit::before { opacity: 1; }
 html[data-motion='off'] .contact::before { display: none; }
 /* keep wide children (photo strip) from stretching their grid */
 .sec__body > *, .strip-wrap { min-width: 0; max-width: 100%; }
+
+/* ───────────── Performance ───────────── */
+.mq__track, .strip__set { will-change: transform; }
+.mq { contain: layout paint; }
+.prow, .prcard, .svccard { content-visibility: auto; contain-intrinsic-size: auto 340px; }
+.sec { contain: layout style; }
+@media (max-width: 800px) { .strip__set li span, .svccard__no, .card__count, .ba__tag { backdrop-filter: none; } }

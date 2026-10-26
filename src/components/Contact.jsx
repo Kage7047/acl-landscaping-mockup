@@ -17,16 +17,26 @@ export default function Contact() {
     },
     { scope: root, dependencies: [reduced], revertOnUpdate: true },
   )
-  // soft light that follows the cursor over the section background
+  // soft light that follows the cursor: one rAF per frame, position written as a transform (no layout, no repaint)
+  const raf = useRef(0)
   const glow = (e) => {
     const el = root.current
     if (!el || e.pointerType === 'touch') return
-    const r = el.getBoundingClientRect()
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    el.style.setProperty('--my', `${e.clientY - r.top}px`)
-    el.classList.add('is-lit')
+    const { clientX, clientY } = e
+    if (raf.current) return
+    raf.current = requestAnimationFrame(() => {
+      raf.current = 0
+      const r = el.getBoundingClientRect()
+      el.style.setProperty('--gx', `${Math.round(clientX - r.left)}px`)
+      el.style.setProperty('--gy', `${Math.round(clientY - r.top)}px`)
+      el.classList.add('is-lit')
+    })
   }
-  const unglow = () => root.current?.classList.remove('is-lit')
+  const unglow = () => {
+    cancelAnimationFrame(raf.current)
+    raf.current = 0
+    root.current?.classList.remove('is-lit')
+  }
   return (
     <section className="contact" id="contact" ref={root} aria-labelledby="contact-title" onPointerMove={glow} onPointerLeave={unglow}>
       <div className="container contact__grid">
