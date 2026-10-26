@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import CtaBand from '../components/CtaBand'
 import BeforeAfter from '../components/BeforeAfter'
 import Lightbox from '../components/Lightbox'
+import Mosaic from '../components/Mosaic'
 import { Pic, picItem } from '../lib/pic'
 import { useReveal } from '../components/useReveal'
 import { useMeta } from '../lib/useMeta'
@@ -45,37 +46,13 @@ export default function Project() {
         }
       />
 
-      <section className="sec sec--paper sec--tight" aria-label="Project photos">
-        <div className="container">
-          <div className={`mosaic mosaic--${Math.min(gallery.length, 5)}`}>
-            {gallery.slice(0, 5).map((g, i) => (
-              <button
-                key={g.s}
-                type="button"
-                className="mosaic__tile"
-                onClick={(e) => {
-                  opener.current = e.currentTarget
-                  setOpen(i)
-                }}
-                aria-label={`Enlarge photo ${i + 1} of ${gallery.length}${g.alt ? `: ${g.alt}` : ''}`}
-              >
-                <Pic s={g.s} alt="" eager={i === 0} sizes={i === 0 ? '(min-width: 960px) 50vw, 100vw' : '(min-width: 960px) 25vw, 50vw'} />
-              </button>
-            ))}
-            <button
-              type="button"
-              className="mosaic__all"
-              onClick={(e) => {
-                opener.current = e.currentTarget
-                setOpen(0)
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
-              Show all {gallery.length} photos
-            </button>
-          </div>
-        </div>
-      </section>
+      <Mosaic
+        photos={gallery}
+        onOpen={(i, el) => {
+          opener.current = el
+          setOpen(i)
+        }}
+      />
 
       <section className="sec sec--paper">
         <div className="container pj">

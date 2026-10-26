@@ -49,7 +49,7 @@ export const SERVICES = [
     kicker: 'Imagine. Design. Build.',
     text: 'It all starts with a great design built around your land, your life, and your budget.',
     points: ['Initial consultation', 'Digital landscape plans', 'Residential & commercial'],
-    image: 'design',
+    image: 'design2',
   },
   {
     id: 'hardscape',

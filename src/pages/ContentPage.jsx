@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import CtaBand from '../components/CtaBand'
 import ProjectMatch from '../components/ProjectMatch'
 import Lightbox from '../components/Lightbox'
+import Mosaic from '../components/Mosaic'
 import { PostCard } from '../components/Cards'
 import { Pic, picItem } from '../lib/pic'
 import { useReveal } from '../components/useReveal'
@@ -143,6 +144,25 @@ export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, me
     return out
   }, [data.related])
 
+  // Every photo on the page, in order, for the lead mosaic
+  const photos = useMemo(() => {
+    const seen = new Set()
+    const out = []
+    const add = (im) => {
+      if (im?.s && !seen.has(im.s)) {
+        seen.add(im.s)
+        out.push(im)
+      }
+    }
+    for (const s of data.sections)
+      for (const c of s.comps) {
+        if (c.k === 'imgs') c.imgs.forEach(add)
+        else if (c.k === 'fig') add(c)
+        else if (c.k === 'card') c.imgs.forEach(add)
+      }
+    return out
+  }, [data.sections])
+
   const lead = data.lead.filter((p) => plain(p).length > 0)
   const secs = data.sections
   return (
@@ -166,6 +186,9 @@ export default function ContentPage({ slug, data, eyebrow, heroImage, crumbs, me
           )
         }
       />
+      {svc && photos.length >= 3 && (
+        <Mosaic photos={photos} label={`${data.title} photos`} onOpen={(i, el) => open(photos.map((x) => picItem(x.s, x.alt, x.alt || x.cap || data.title)), i, el)} />
+      )}
       {svc && <ProjectMatch service={svc.service} serviceLabel={svc.label} />}
       {secs.map((s, i) => (
         <section key={s.title} className={`sec ${i % 2 ? 'sec--cream' : 'sec--paper'}`} aria-labelledby={`h-${slug}-${i}`}>

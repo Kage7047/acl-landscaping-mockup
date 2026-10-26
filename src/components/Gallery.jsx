@@ -87,7 +87,12 @@ export default function Gallery() {
               Portfolio of <em>South Austin</em> landscapes.
             </h2>
           </div>
-          <p className="work__hint">Tap or click any project to see it larger.</p>
+          <button type="button" className="pill" onClick={(e) => open(0, e.currentTarget)}>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            Show all {GALLERY.length} photos
+          </button>
         </div>
 
         <ul className="bento">
